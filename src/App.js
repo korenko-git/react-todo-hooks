@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import ErrorBoundary from './components/ErrorBoundary';
 import Toggle from './components/Toggle';
 
+import { TodoProvider } from './context/todoContext';
 import { useDarkMode } from './hooks/useDarkMode';
 
 import { GlobalStyles } from './global-styles';
@@ -18,6 +19,7 @@ function App() {
       <ThemeProvider theme={themeMode}>
         <GlobalStyles />
         <Toggle theme={theme} toggleTheme={toggleTheme} />
+        <TodoProvider></TodoProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );
