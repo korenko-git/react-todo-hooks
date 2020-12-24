@@ -40,6 +40,7 @@
     "@svgr/webpack": "5.5.0",
     "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "^3.7.0",
+    "@types/jest": "^26.0.19",
     "babel-eslint": "^8.2.6",
     "babel-loader": "^8.2.2",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
