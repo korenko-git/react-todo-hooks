@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { useTodoContext } from 'context/todoContext';
 
 import { NewTodoInput } from './AppHeader.css.js';
+import Ribbon from './Ribbon.css.js';
 
 const AppHeader = () => {
   const [todo, setTodo] = useState('');
-  const { addItem, createTodoItem } = useTodoContext();
+  const { addItem, createTodoItem, date } = useTodoContext();
 
   const onChange = (event) => {
     setTodo(event.target.value);
@@ -20,6 +21,10 @@ const AppHeader = () => {
 
   return (
     <header>
+      <Ribbon variant="primary">
+        <span>{date}</span>
+      </Ribbon>
+
       <form onSubmit={onSubmit}>
         <NewTodoInput
           type="text"
