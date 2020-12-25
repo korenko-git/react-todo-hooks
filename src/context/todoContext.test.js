@@ -3,9 +3,6 @@ import { TodoProvider, useTodoContext } from './todoContext';
 
 describe('todoContext', () => {
   it('should create new todo by createTodoItem', () => {
-    const mockDate = new Date('2020-08-17T11:01:58.135Z');
-    jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
-
     let newItem = [];
     const TestComponent = () => {
       const { createTodoItem } = useTodoContext();
@@ -22,7 +19,7 @@ describe('todoContext', () => {
     expect(newItem).toEqual({
       label: 'new todo',
       done: false,
-      id: `toDo_${mockDate.getTime()}`,
+      id: `toDo_${new Date().getTime()}`,
     });
   });
 });
