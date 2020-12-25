@@ -4,6 +4,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Toggle from './components/Toggle';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
+import TodoList from './components/TodoList';
 
 import { TodoProvider } from './context/todoContext';
 import { useDarkMode } from './hooks/useDarkMode';
@@ -32,6 +33,7 @@ function App() {
             <AppTitle>Todo</AppTitle>
             <TodoContainer>
               <AppHeader />
+              <TodoList />
               <AppFooter />
             </TodoContainer>
           </AppContainer>
