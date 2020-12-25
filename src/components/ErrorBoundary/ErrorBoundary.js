@@ -22,7 +22,9 @@ export default class ErrorBoundary extends Component {
       return (
         <Wrapper>
           <span className="title">Error!</span>
-          <span className="text">something has gone terribly wrong</span>
+          <span data-testid="errorText" className="text">
+            something has gone terribly wrong
+          </span>
         </Wrapper>
       );
     }
