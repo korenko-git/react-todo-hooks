@@ -9,7 +9,7 @@ describe('useLocalStorage hook', () => {
   describe('storedValue', () => {
     describe('local storage has data', () => {
       it('should take the value from the local storage', () => {
-        window.localStorage.setItem('item', 'fromLocalStorage');
+        window.localStorage.setItem('item', JSON.stringify('fromLocalStorage'));
         const [storedValue] = setup('item', 'initial').result.current;
 
         expect(storedValue).toBe('fromLocalStorage');

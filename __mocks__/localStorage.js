@@ -10,7 +10,7 @@ class LocalStorageMock {
   getItem = jest.fn((key) => this.storage[key] || null);
 
   setItem = jest.fn((key, value) => {
-    this.storage[key] = JSON.stringify(value);
+    this.storage[key] = String(value);
   });
 
   removeItem(key) {

@@ -19,14 +19,14 @@ describe('useDarkMode hook', () => {
   });
 
   it('should set the theme based on data from local storage', () => {
-    window.localStorage.setItem('theme', 'light');
+    window.localStorage.setItem('theme', JSON.stringify('light'));
     const { result } = setup();
 
     expect(result.current.theme).toBe('light');
   });
 
   it('should toggle theme by toggleTheme', () => {
-    window.localStorage.setItem('theme', 'light');
+    window.localStorage.setItem('theme', JSON.stringify('light'));
     const { result } = setup();
 
     act(() => {
