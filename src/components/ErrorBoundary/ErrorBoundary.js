@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Wrapper } from './ErrorBoundary.css';
+import { Wrapper } from './ErrorBoundary.css.js';
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
