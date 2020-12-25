@@ -8,7 +8,7 @@ import { filters } from 'helpers/filterHelper';
 
 const todoContext = createContext();
 
-export function TodoProvider({ children }) {
+export function TodoProvider({ children, ...rest }) {
   const todo = useListControl([]);
   const [activeFilter, setFilter] = useState(filters.all.name);
   const [date, setDate] = useLocalStorage(
@@ -31,6 +31,7 @@ export function TodoProvider({ children }) {
         setFilter,
         date,
         setDate,
+        ...rest,
       }}
     >
       {children}

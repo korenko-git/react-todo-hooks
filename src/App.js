@@ -2,6 +2,8 @@ import { ThemeProvider } from 'styled-components';
 
 import ErrorBoundary from './components/ErrorBoundary';
 import Toggle from './components/Toggle';
+import AppHeader from './components/AppHeader';
+import AppFooter from './components/AppFooter';
 
 import { TodoProvider } from './context/todoContext';
 import { useDarkMode } from './hooks/useDarkMode';
@@ -28,7 +30,10 @@ function App() {
         <TodoProvider>
           <AppContainer>
             <AppTitle>Todo</AppTitle>
-            <TodoContainer></TodoContainer>
+            <TodoContainer>
+              <AppHeader />
+              <AppFooter />
+            </TodoContainer>
           </AppContainer>
         </TodoProvider>
       </ThemeProvider>
