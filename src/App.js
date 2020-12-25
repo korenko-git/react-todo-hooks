@@ -10,6 +10,12 @@ import { GlobalStyles } from './global-styles';
 import darkTheme from './themes/darkTheme';
 import lightTheme from './themes/lightTheme';
 
+import {
+  AppContainer,
+  TodoContainer,
+} from './components/shared/Container.css.js';
+import { AppTitle } from './components/AppHeader/AppHeader.css.js';
+
 function App() {
   const { theme, toggleTheme } = useDarkMode();
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
@@ -19,7 +25,12 @@ function App() {
       <ThemeProvider theme={themeMode}>
         <GlobalStyles />
         <Toggle theme={theme} toggleTheme={toggleTheme} />
-        <TodoProvider></TodoProvider>
+        <TodoProvider>
+          <AppContainer>
+            <AppTitle>Todo</AppTitle>
+            <TodoContainer></TodoContainer>
+          </AppContainer>
+        </TodoProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );
