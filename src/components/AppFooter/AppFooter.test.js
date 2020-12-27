@@ -23,9 +23,9 @@ describe('<AppHeader />', () => {
   });
 
   it('should display the number of items remaining', () => {
-    const { getByText } = setup();
+    const { queryByText } = setup();
 
-    expect(getByText('2 items left')).toBeTruthy();
+    expect(queryByText('2 items left')).toBeTruthy();
   });
 
   it('should handles button click', () => {

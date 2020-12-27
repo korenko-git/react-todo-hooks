@@ -6,13 +6,13 @@ import 'themes/mockTheme';
 describe('<TodoList />', () => {
   it('should render message', () => {
     window.localStorage.clear();
-    const { getByTestId } = render(
+    const { queryByTestId } = render(
       <TodoProvider>
         <TodoList />
       </TodoProvider>,
     );
 
-    expect(getByTestId('messageEmptyFilter'));
+    expect(queryByTestId('messageEmptyFilter')).toBeTruthy();
   });
 
   it('should render todo list', () => {
@@ -22,7 +22,7 @@ describe('<TodoList />', () => {
     ];
     window.localStorage.setItem('items', JSON.stringify(items));
 
-    const { container, getByText } = render(
+    const { container, queryByText } = render(
       <TodoProvider>
         <TodoList />
       </TodoProvider>,
@@ -32,7 +32,7 @@ describe('<TodoList />', () => {
       container.querySelector("[data-testid='messageEmptyFilter']"),
     ).toBeNull();
 
-    expect(getByText('one todo'));
-    expect(getByText('two todo'));
+    expect(queryByText('one todo')).toBeTruthy();
+    expect(queryByText('two todo')).toBeTruthy();
   });
 });
