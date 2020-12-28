@@ -6,16 +6,16 @@ import { StyledTodoListItem } from './TodoListItem.css.js';
 import { ReactComponent as DeleteIcon } from './delete.svg';
 import { ReactComponent as EditIcon } from './pencil.svg';
 
-const TodoListItem = ({ label, done }) => (
+const TodoListItem = ({ label, done, openModalEdit, openModalRemove }) => (
   <StyledTodoListItem completed={done}>
     <span>{label}</span>
 
     <div>
-      <Button outlined>
+      <Button outlined onClick={openModalEdit}>
         <EditIcon height="40px" width="40px" />
       </Button>
 
-      <Button outlined>
+      <Button outlined onClick={openModalRemove}>
         <DeleteIcon height="40px" width="40px" />
       </Button>
     </div>
@@ -25,6 +25,8 @@ const TodoListItem = ({ label, done }) => (
 TodoListItem.propTypes = {
   label: PropTypes.string.isRequired,
   done: PropTypes.bool.isRequired,
+  openModalEdit: PropTypes.func.isRequired,
+  openModalRemove: PropTypes.func.isRequired,
 };
 
 export default TodoListItem;
