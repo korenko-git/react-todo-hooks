@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { useTodoContext } from 'context/todoContext';
+import withModal from 'HOC/withModal';
+
+import FormEditFilter from './FormEditFilter';
 
 import { NewTodoInput } from './AppHeader.css.js';
 import Ribbon from './Ribbon.css.js';
 
-const AppHeader = () => {
+const AppHeader = ({ openModal, closeModal }) => {
   const [todo, setTodo] = useState('');
   const { addItem, createTodoItem, date } = useTodoContext();
 
@@ -21,7 +25,12 @@ const AppHeader = () => {
 
   return (
     <header>
-      <Ribbon variant="primary">
+      <Ribbon
+        variant="primary"
+        onClick={() =>
+          openModal('Filter Task', <FormEditFilter closeModal={closeModal} />)
+        }
+      >
         <span>{date}</span>
       </Ribbon>
 
@@ -38,4 +47,9 @@ const AppHeader = () => {
   );
 };
 
-export default AppHeader;
+AppHeader.propTypes = {
+  openModal: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+};
+
+export default withModal(AppHeader);
