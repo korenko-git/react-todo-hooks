@@ -1,6 +1,9 @@
 import { act, render, screen } from '@testing-library/react';
+import { config } from 'react-transition-group';
 import withModal from './withModal';
 import 'themes/mockTheme';
+
+config.disabled = true;
 
 describe('withModal HOC', () => {
   function getProps() {

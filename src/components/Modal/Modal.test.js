@@ -1,6 +1,9 @@
 import { render, fireEvent } from '@testing-library/react';
+import { config } from 'react-transition-group';
 import Modal from './Modal';
 import 'themes/mockTheme';
+
+config.disabled = true;
 
 describe('<Modal />', () => {
   function renderModal() {
@@ -10,6 +13,7 @@ describe('<Modal />', () => {
         body: <p>modal body</p>,
       },
       closeModal: jest.fn(),
+      isModalOpen: true,
     };
 
     return [render(<Modal {...modalProps} />), modalProps];

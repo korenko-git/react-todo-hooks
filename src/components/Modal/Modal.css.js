@@ -9,6 +9,7 @@ const Modal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: ${({ state }) => (state === 'entered' ? 1 : 0)};
   transition: opacity linear 0.15s;
   z-index: 2000;
   margin: 15px;

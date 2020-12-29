@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { Transition } from 'react-transition-group';
 import { useEffect } from 'react';
 
 import Button from 'components/shared/Button.css.js';
@@ -14,7 +15,7 @@ if (!modalRoot) {
   document.body.appendChild(modalRoot);
 }
 
-const Modal = ({ modalConfig, closeModal }) => {
+const Modal = ({ modalConfig, closeModal, isModalOpen }) => {
   const { title, body } = modalConfig;
 
   const onEscKeyDown = (event) => {
@@ -31,22 +32,26 @@ const Modal = ({ modalConfig, closeModal }) => {
   }, []);
 
   return ReactDOM.createPortal(
-    <StyledModal role="dialog">
-      <div className="box-dialog">
-        <div className="box-header">
-          <h4 className="box-title">{title}</h4>
-          <Button onClick={closeModal} className="x-close"></Button>
-        </div>
+    <Transition in={isModalOpen} timeout={150} unmountOnExit mountOnEnter>
+      {(state) => (
+        <StyledModal state={state} role="dialog">
+          <div className="box-dialog">
+            <div className="box-header">
+              <h4 className="box-title">{title}</h4>
+              <Button onClick={closeModal} className="x-close"></Button>
+            </div>
 
-        {body}
-      </div>
+            {body}
+          </div>
 
-      <div
-        className="background"
-        data-testid="background"
-        onMouseDown={closeModal}
-      />
-    </StyledModal>,
+          <div
+            className="background"
+            data-testid="background"
+            onMouseDown={closeModal}
+          />
+        </StyledModal>
+      )}
+    </Transition>,
     modalRoot,
   );
 };
@@ -54,9 +59,13 @@ const Modal = ({ modalConfig, closeModal }) => {
 Modal.propTypes = {
   modalConfig: PropTypes.shape({
     title: PropTypes.string,
-    body: PropTypes.element,
+    body: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.element),
+      PropTypes.element,
+    ]),
   }).isRequired,
   closeModal: PropTypes.func.isRequired,
+  isModalOpen: PropTypes.bool.isRequired,
 };
 
 export default Modal;

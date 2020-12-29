@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { useTodoContext } from 'context/todoContext';
 import { filterItems } from 'helpers/filterHelper';
@@ -19,35 +20,38 @@ const TodoList = ({ openModal, closeModal }) => {
   const elements = useMemo(
     () =>
       todoVisible.map(({ id, ...itemProps }) => (
-        <TodoListItem
-          {...itemProps}
-          key={id}
-          openModalRemove={() =>
-            openModal(
-              'Warning',
-              <FormRemoveTodo id={id} closeModal={closeModal} />,
-            )
-          }
-          openModalEdit={() =>
-            openModal(
-              'Edit task',
-              <FormEditTodo id={id} closeModal={closeModal} />,
-            )
-          }
-        />
+        <CSSTransition key={id} classNames="todo" timeout={800}>
+          <TodoListItem
+            {...itemProps}
+            openModalRemove={() =>
+              openModal(
+                'Warning',
+                <FormRemoveTodo id={id} closeModal={closeModal} />,
+              )
+            }
+            openModalEdit={() =>
+              openModal(
+                'Edit task',
+                <FormEditTodo id={id} closeModal={closeModal} />,
+              )
+            }
+          />
+        </CSSTransition>
       )),
     [items, activeFilter],
   ); // eslint-disable-line
 
   const empty = (
-    <StyledTodoListItem key="empty" data-testid="messageEmptyFilter">
-      <span>There are no tasks available for this filter!</span>
-    </StyledTodoListItem>
+    <CSSTransition key="empty" classNames="todo" timeout={800}>
+      <StyledTodoListItem data-testid="messageEmptyFilter">
+        <span>There are no tasks available for this filter!</span>
+      </StyledTodoListItem>
+    </CSSTransition>
   );
 
   return (
     <StyledTodoList direction="column">
-      {elements.length ? elements : empty}
+      <TransitionGroup>{elements.length ? elements : empty}</TransitionGroup>
     </StyledTodoList>
   );
 };
